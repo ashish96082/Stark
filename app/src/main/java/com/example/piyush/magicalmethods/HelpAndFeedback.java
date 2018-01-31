@@ -42,9 +42,9 @@ public class HelpAndFeedback extends AppCompatActivity {
     FloatingActionButton call;
     private static final int REQUEST_CALL = 1;
 
-   // private DatabaseReference mDatabase;
-   // private ListView mList;
-  //  private ArrayList<String> mQAList = new ArrayList<>();
+    private DatabaseReference mDatabase;
+    private ListView mList;
+    private ArrayList<String> mQAList = new ArrayList<>();
 
 
     @Override
@@ -135,15 +135,13 @@ public class HelpAndFeedback extends AppCompatActivity {
                 makePhoneCall();
             }
         });
-    }
-
-    /*    mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mList = (ListView) findViewById(R.id.help_answer);
 
        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, mQAList);
         mList.setAdapter(arrayAdapter);
 
-        mDatabase.addChildEventListener(new ChildEventListener() {
+        mDatabase.child("help").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -175,7 +173,7 @@ public class HelpAndFeedback extends AppCompatActivity {
 
             }
         });
-    }  */
+    }
     public void makePhoneCall() {
         if (ContextCompat.checkSelfPermission(HelpAndFeedback.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(HelpAndFeedback.this, new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CALL);
