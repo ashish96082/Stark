@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "261399801756",
+    "firebase_url": "https://magicalmethods-b44c8.firebaseio.com",
+    "project_id": "magicalmethods-b44c8",
+    "storage_bucket": "magicalmethods-b44c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261399801756:android:6a9180dbcb642501",
+        "android_client_info": {
+          "package_name": "com.example.piyush.magicalmethods"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261399801756-ca2l9vkq5bta1e6hdi0hj7l0q5ihodqb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.piyush.magicalmethods",
+            "certificate_hash": "88ef358aa2838173a49c995f66368a8703433cb9"
+          }
+        },
+        {
+          "client_id": "261399801756-imj5r65urgt0pul23iv13usjodr6va9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWiddKinNXfXL1_cw6vrB19uWe8aMdKrs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261399801756-imj5r65urgt0pul23iv13usjodr6va9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

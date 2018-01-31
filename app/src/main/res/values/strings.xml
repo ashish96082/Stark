@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MagicalMethods</string>
+    <string name="Welcome">"Welcome to Magical Methods!"</string>
+    <string name="Hello">Login</string>
+    <string name="Forget_Password">Forgot Password ?</string>
+    <string name="btn_Login">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_signup">"Not a member? Get registered to MagicalMethods now!"</string>
+    <string name="clicking_register">"By clicking Register, I accept Magical Methods privacy policy"</string>
+    <string name="btn_register">"Register"</string>
+    <string name="btn_signin">"Already Registered. Login me!"</string>
+    <string name="give_id">"Enter your registered Email-id below"</string>
+    <string name="btn_reset">"Reset Password"</string>
+    <string name="btn_back">"Back"</string>
+    <string name="let_s_get_to_know_you">Let\'s get to know you</string>
+    <string name="name">Name:</string>
+    <string name="city">City:</string>
+    <string name="phone_no">Phone No:</string>
+</resources>

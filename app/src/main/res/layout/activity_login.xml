@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/logocopy1" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView2">
+
+                <EditText
+                    android:id="@+id/email1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryText" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_layout_email1"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/password1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/email1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorSecondaryText" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/input_layout_password1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/colorAccent"
+                android:onClick="login"
+                android:text="@string/btn_Login"
+                android:textColor="@color/colorIcons" />
+
+            <Button
+                android:id="@+id/frg_password1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_Login"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:onClick="reset"
+                android:text="@string/Forget_Password"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/rgt_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/frg_password1"
+                android:layout_centerHorizontal="true"
+                android:background="@null"
+                android:onClick="register"
+                android:text="@string/btn_signup"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryText" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
