@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(RegisterActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(RegisterActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
                                 if (task.isSuccessful()) {
                                     progressDialog.setMessage("Registering user...");
@@ -100,7 +100,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     //finish();
                                 } else {
                                     progressDialog.cancel();
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(),
+                                    Exception e=task.getException();
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed." + e.getMessage(),
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
