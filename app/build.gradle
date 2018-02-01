@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    dataBinding{ enabled=true}
+    dataBinding { enabled = true }
     defaultConfig {
         applicationId "com.example.piyush.magicalmethods"
         minSdkVersion 21
@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 }
+
 
 
 
