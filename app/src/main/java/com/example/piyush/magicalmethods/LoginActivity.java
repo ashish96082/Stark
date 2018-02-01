@@ -19,6 +19,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Created by SWE
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;

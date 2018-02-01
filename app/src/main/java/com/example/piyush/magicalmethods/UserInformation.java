@@ -1,7 +1,7 @@
 package com.example.piyush.magicalmethods;
 
 /**
- * Created by Piyush on 29-Jan-18.
+ * Created by SWE
  */
 
 public class UserInformation {

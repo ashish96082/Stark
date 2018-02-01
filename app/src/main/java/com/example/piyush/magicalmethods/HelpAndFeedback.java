@@ -138,6 +138,13 @@ public class HelpAndFeedback extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mList = (ListView) findViewById(R.id.help_answer);
 
+
+
+
+        /**
+         * Created by PR
+         */
+
        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, mQAList);
         mList.setAdapter(arrayAdapter);
 

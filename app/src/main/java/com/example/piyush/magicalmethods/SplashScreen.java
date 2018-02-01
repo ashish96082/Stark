@@ -9,6 +9,9 @@ import android.widget.ImageView;
 
 public class SplashScreen extends AppCompatActivity {
     private static final String TAG = "SplashScreen";
+    /**
+     * Created by SWE
+     */
 
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
