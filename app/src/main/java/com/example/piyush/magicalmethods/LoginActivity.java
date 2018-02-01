@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                inputEmail.setText("");
+                inputPassword.setText("");
             }
         });
 
@@ -64,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                inputEmail.setText("");
+                inputPassword.setText("");
             }
         });
 
