@@ -39,6 +39,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                 inputEmail.setText("");
             }
         });
 
@@ -63,6 +64,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                 inputEmail.setText("");
             }
         });
     }
