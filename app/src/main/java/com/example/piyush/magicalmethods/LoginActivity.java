@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                inputEmail.setText("");
+                inputPassword.setText("");
             }
         });
 
@@ -64,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                inputEmail.setText("");
+                inputPassword.setText("");
             }
         });
 
@@ -99,7 +103,8 @@ public class LoginActivity extends AppCompatActivity {
                                         return;
                                     } else {
                                         progressDialog.cancel();
-                                        Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
+                                        Exception ex=task.getException();
+                                        Toast.makeText(LoginActivity.this, "Authentication failed" + ex.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
                                     progressDialog.setMessage("Logging in...");

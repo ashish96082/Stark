@@ -51,6 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                inputEmail.setText("");
+                inputPassword.setText("");
             }
         });
 
@@ -143,6 +145,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        
     }
 }
