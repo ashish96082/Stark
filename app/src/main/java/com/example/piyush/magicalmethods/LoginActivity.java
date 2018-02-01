@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
         inputEmail = (EditText) findViewById(R.id.email1);
         inputPassword = (EditText) findViewById(R.id.password1);
         btnSignup = (Button) findViewById(R.id.rgt_btn1);
@@ -93,12 +94,16 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
                                     if (password.length() < 6) {
+                                        progressDialog.cancel();
                                         Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                                         return;
                                     } else {
+                                        progressDialog.cancel();
                                         Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
+                                    progressDialog.setMessage("Logging in...");
+                                    progressDialog.show();
                                     checkIfEmailVerified();
                                 }
                             }
@@ -111,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser users = FirebaseAuth.getInstance().getCurrentUser();
         boolean emailVerified = users.isEmailVerified();
         if (!emailVerified) {
+            progressDialog.cancel();
             Toast.makeText(this, "Can't log in, please verify the email address", Toast.LENGTH_SHORT).show();
             auth.signOut();
             finish();
@@ -118,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    progressDialog.cancel();
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
             }, 1500);
