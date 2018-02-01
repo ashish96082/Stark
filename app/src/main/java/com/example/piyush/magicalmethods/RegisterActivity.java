@@ -101,7 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     //finish();
                                 } else {
                                     progressDialog.cancel();
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(),
+                                    Exception e=task.getException();
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed." + e.getMessage(),
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
