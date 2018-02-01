@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         progressDialog = new ProgressDialog(this);
-
+        progressDialog.setCancelable(false);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
         image1 = (ImageView) findViewById(R.id.imageView1);
@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(RegisterActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(RegisterActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
 
                                 if (task.isSuccessful()) {
                                     progressDialog.setMessage("Registering user...");
@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             sendEmailVerification();
+                                            progressDialog.cancel();
                                             startActivity(new Intent(RegisterActivity.this, AddToDatabase.class));
                                         }
                                     }, 2000);
@@ -137,5 +138,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"You are in Landscape mode",Toast.LENGTH_SHORT).show();
 
         }*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
