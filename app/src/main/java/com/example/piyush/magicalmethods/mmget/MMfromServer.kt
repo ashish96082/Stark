@@ -2,16 +2,13 @@ package com.example.piyush.magicalmethods.mmget
 
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.util.Log
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.example.piyush.magicalmethods.lib.ManageSession
 import com.example.piyush.magicalmethods.lib.Util
-import com.example.piyush.magicalmethods.mmget.mcrypt
 import com.github.kittinunf.fuel.httpPost
-import java.util.*
 
 /**
 * Created by ashish kumar on 04-11-2017 | 04:05 PM.

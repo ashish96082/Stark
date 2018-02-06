@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by USER
@@ -35,7 +34,7 @@ public class CourseDetail extends AppCompatActivity {
     }
 
     void openVideoPlayerActivity() {
-        Intent intent = new Intent(CourseDetail.this, VideoPlayerActivity.class);
+        Intent intent = new Intent(CourseDetail.this, PaymentWebviewActivity.class);
         startActivity(intent);
     }
 
