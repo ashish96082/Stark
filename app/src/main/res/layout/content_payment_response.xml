@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.piyush.magicalmethods.PaymentResponseActivity"
-    tools:showIn="@layout/activity_payment_response_activity">
+    tools:showIn="@layout/activity_payment_response">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -75,8 +75,19 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <data android:scheme="payment_response" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CourseDetailsNew"
+            android:label="@string/title_activity_course_details_new"
+            android:theme="@style/AppTheme.Appcompat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

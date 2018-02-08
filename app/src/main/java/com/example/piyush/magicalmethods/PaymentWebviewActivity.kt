@@ -1,14 +1,13 @@
 package com.example.piyush.magicalmethods
 
 import android.app.Activity
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_payment_webview.*
 import java.net.URLEncoder
 import android.content.Intent
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class PaymentWebviewActivity : Activity() {
@@ -16,6 +15,17 @@ class PaymentWebviewActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_webview)
+
+        val courseKey = intent.getStringExtra("courseKey")
+        if (courseKey == null)
+            onBackPressed()
+
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
+        if (user == null) {
+            openLoginActivity()
+        }
 
         val paymentWebview = payment_webview as WebView
         paymentWebview.webViewClient = object : WebViewClient() {
@@ -34,8 +44,13 @@ class PaymentWebviewActivity : Activity() {
         paymentWebviewSettings.displayZoomControls = false
 
         val url = "http://mm.s-ct.asia/payment_request.php"
-        val postData = "courseKey=" + URLEncoder.encode("asaouetsfnvpsq") + "&email=" + URLEncoder.encode("ashish96082@gmail.com") + "&userid=" + URLEncoder.encode("randomkey")
+        val postData = "courseKey=" + URLEncoder.encode(courseKey) + "&email=" + URLEncoder.encode(user?.email) + "&userid=" + URLEncoder.encode(user?.uid)
 
         paymentWebview.postUrl(url, postData.toByteArray())
+    }
+
+    private fun openLoginActivity() {
+        val intent =  Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
