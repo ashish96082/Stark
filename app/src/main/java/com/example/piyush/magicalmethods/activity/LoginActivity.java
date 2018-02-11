@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods;
+package com.example.piyush.magicalmethods.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.piyush.magicalmethods.R;
+import com.example.piyush.magicalmethods.lib.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -125,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
             auth.signOut();
             finish();
         } else {
+            Util.Companion.saveUserData(this);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

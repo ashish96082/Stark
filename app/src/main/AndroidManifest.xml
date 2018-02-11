@@ -12,23 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AddToDatabase"
+            android:name=".activity.AddToDatabaseActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".activity.ForgotPasswordActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activity.SplashScreenActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -38,28 +38,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
         <activity
-            android:name=".Explore"
+            android:name=".activity.ExploreActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
         <activity
-            android:name=".Developers"
+            android:name=".activity.DevelopersActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
         <activity
-            android:name=".HelpAndFeedback"
+            android:name=".activity.HelpAndFeedbackActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
         <activity
             android:name=".CourseDetail"
             android:configChanges="orientation|screenSize"
             android:theme="@style/CustomTheme" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
-            android:name=".VideoPlayerActivity"
+            android:name=".activity.VideoPlayerActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -67,10 +67,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PaymentWebviewActivity"
+            android:name=".activity.PaymentWebviewActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".PaymentResponseActivity"
+            android:name=".activity.PaymentResponseActivity"
             android:label="@string/title_activity_payment_response_activity"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -82,14 +82,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CourseDetailsNew"
+            android:name=".activity.CourseDetailsActivity"
             android:label="@string/title_activity_course_details_new"
-            android:theme="@style/AppTheme.Appcompat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.Appcompat" />
+        <activity
+            android:name=".activity.PurchasedCoursesActivity"
+            android:label="@string/title_activity_purchased_courses"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

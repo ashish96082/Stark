@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 
 public class MyData implements Parcelable {
     private int id;
-    private String description,image_link,longDesc,table_of_contents;
+    private String description, course_key,image_link,longDesc,table_of_contents;
 
     protected MyData(Parcel in) {
         id = in.readInt();
@@ -24,6 +24,7 @@ public class MyData implements Parcelable {
         image_link = in.readString();
         longDesc = in.readString();
         table_of_contents = in.readString();
+        course_key = in.readString();
     }
 
     public static final Creator<MyData> CREATOR = new Creator<MyData>() {
@@ -78,8 +79,17 @@ public class MyData implements Parcelable {
         this.image_link = image_link;
     }
 
-    public MyData(int id, String description, String image_link, String longDesc, String [] table_of_contents) {
+    public String getCourse_key() {
+        return course_key;
+    }
+
+    public void setCourse_key(String course_key) {
+        this.course_key = course_key;
+    }
+
+    public MyData(int id, String course_key, String description, String image_link, String longDesc, String [] table_of_contents) {
         this.id = id;
+        this.course_key = course_key;
         this.description = description;
         this.image_link = image_link;
         this.longDesc = longDesc;
@@ -94,6 +104,7 @@ public class MyData implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(id);
+        parcel.writeString(course_key);
         parcel.writeString(description);
         parcel.writeString(image_link);
         parcel.writeString(longDesc);

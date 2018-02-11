@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.piyush.magicalmethods.activity.CourseDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_course_card, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -63,8 +64,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(itemView);
             description = (TextView) itemView.findViewById(R.id.description);
             imageView = (ImageView) itemView.findViewById(R.id.image);
-            viewCourse = itemView.findViewById(R.id.viewCourse);
-            viewCourse.setOnClickListener(this);
+//            viewCourse = itemView.findViewById(R.id.viewCourse);
+            itemView.setOnClickListener(this);
             //itemView.setOnClickListener(this);
         }
 
@@ -72,10 +73,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public void onClick(View view) {
             int position = getAdapterPosition();
             MyData selectedCard = my_data.get(position);
-            Intent intent = new Intent(view.getContext(), CourseDetail.class);
-            intent.putExtra("Card", selectedCard);
-            view.getContext().startActivity(intent);
+//            Intent intent = new Intent(view.getContext(), CourseDetail.class);
+//            intent.putExtra("Card", selectedCard);
+//            view.getContext().startActivity(intent);
 
+            Intent intent = new Intent(context, CourseDetailsActivity.class);
+            intent.putExtra("courseKey", selectedCard.getCourse_key());
+            context.startActivity(intent);
         }
     }
 

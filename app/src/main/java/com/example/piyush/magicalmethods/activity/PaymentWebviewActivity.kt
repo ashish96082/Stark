@@ -1,13 +1,14 @@
-package com.example.piyush.magicalmethods
+package com.example.piyush.magicalmethods.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.example.piyush.magicalmethods.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_payment_webview.*
 import java.net.URLEncoder
-import android.content.Intent
-import com.google.firebase.auth.FirebaseAuth
 
 
 class PaymentWebviewActivity : Activity() {
@@ -26,6 +27,7 @@ class PaymentWebviewActivity : Activity() {
         if (user == null) {
             openLoginActivity()
         }
+        user?.displayName
 
         val paymentWebview = payment_webview as WebView
         paymentWebview.webViewClient = object : WebViewClient() {

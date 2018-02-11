@@ -1,13 +1,12 @@
-package com.example.piyush.magicalmethods
+package com.example.piyush.magicalmethods.activity
 
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-
+import com.example.piyush.magicalmethods.R
 import kotlinx.android.synthetic.main.activity_payment_response.*
-import kotlinx.android.synthetic.main.content_payment_response.*
 
 class PaymentResponseActivity : AppCompatActivity() {
 
@@ -21,9 +20,7 @@ class PaymentResponseActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        open_video_player.setOnClickListener {
-            startActivity(Intent(this, VideoPlayerActivity::class.java))
-        }
+        startActivity(Intent(this, PurchasedCoursesActivity::class.java))
     }
 
 }

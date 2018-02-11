@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.piyush.magicalmethods.HomeActivity">
+    tools:context="com.example.piyush.magicalmethods.activity.HomeActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,12 +15,10 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <Button
-        android:id="@+id/open_new_course_details"
-        android:layout_below="@id/toolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open New Course Details" />
+    <include layout="@layout/content_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

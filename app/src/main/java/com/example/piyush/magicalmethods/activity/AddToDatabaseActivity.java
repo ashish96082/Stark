@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods;
+package com.example.piyush.magicalmethods.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.piyush.magicalmethods.R;
+import com.example.piyush.magicalmethods.entity.UserInformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +25,9 @@ import com.google.firebase.database.ValueEventListener;
  * Created by SWE
  */
 
-public class AddToDatabase extends AppCompatActivity {
+public class AddToDatabaseActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddToDatabase";
+    private static final String TAG = "AddToDatabaseActivity";
     private Button btnSubmit;
     private EditText mName,mcity,mPhoneNum;
     private String userID;
@@ -110,7 +112,7 @@ public class AddToDatabase extends AppCompatActivity {
                     mName.setText("");
                     mcity.setText("");
                     mPhoneNum.setText("");
-                    startActivity(new Intent(AddToDatabase.this,LoginActivity.class));
+                    startActivity(new Intent(AddToDatabaseActivity.this,LoginActivity.class));
                 }else{
                     toastMessage("Fill out all the fields");
                 }

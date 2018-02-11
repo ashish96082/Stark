@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods.mmget;
+package com.example.piyush.magicalmethods.lib;
 
 import java.security.NoSuchAlgorithmException;
 

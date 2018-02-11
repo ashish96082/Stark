@@ -1,11 +1,29 @@
 package com.example.piyush.magicalmethods.lib
 
+import android.app.Activity
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import android.provider.Settings
+import com.example.piyush.magicalmethods.*
+import com.example.piyush.magicalmethods.activity.*
+import com.example.piyush.magicalmethods.entity.UserInformation
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.mikepenz.materialdrawer.AccountHeader
+import com.mikepenz.materialdrawer.AccountHeaderBuilder
+import com.mikepenz.materialdrawer.Drawer
+import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.text.NumberFormat
 import java.util.*
 
 
@@ -88,6 +106,109 @@ class Util {
 
         fun getState() {
             // @TODO Implement getstate
+        }
+
+
+        fun initDrawer(context: Context): Pair<Drawer, AccountHeader> {
+            val auth = FirebaseAuth.getInstance()
+            val user = auth.currentUser
+            val email = user?.email ?: "ironman@jarvis.com"
+
+            val sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE)
+            val displayName = sharedPreferences.getString("name", "Tony Stark")
+
+            // Create the AccountHeader
+            val headerResult = AccountHeaderBuilder()
+                    .withActivity(context as Activity)
+                    .withHeaderBackground(R.drawable.header)
+                    .addProfiles(
+                            ProfileDrawerItem().withName(displayName).withEmail(email).withIcon(context.getResources().getDrawable(R.drawable.tony_stark))
+
+                    )
+                    .withOnAccountHeaderListener { view, profile, currentProfile -> false }
+                    .build()
+
+
+            val result = DrawerBuilder()
+                    .withActivity(context)
+                    .withAccountHeader(headerResult)
+                    .withToolbar(context.findViewById(R.id.toolbar))
+                    .withActionBarDrawerToggleAnimated(true)
+
+                    .addDrawerItems(
+                            PrimaryDrawerItem().withIdentifier(1).withName("Home").withIcon(context.getResources().getDrawable(R.drawable.home)),
+                            PrimaryDrawerItem().withIdentifier(2).withName("Explore").withIcon(context.getResources().getDrawable(R.drawable.explore)),
+
+//                            ExpandableDrawerItem().withName("Your courses").withIcon(context.getResources().getDrawable(R.drawable.your_courses)).withIdentifier(3).withSelectable(false).withSubItems(
+//                                    SecondaryDrawerItem().withName("Course 1").withLevel(2).withIdentifier(31).withSelectable(false),
+//                                    SecondaryDrawerItem().withName("Course 2").withLevel(2).withIdentifier(32).withSelectable(false)
+//                            ),
+                            PrimaryDrawerItem().withIdentifier(3).withName("My Courses").withIcon(context.resources.getDrawable(R.drawable.your_courses)),
+
+                            PrimaryDrawerItem().withIdentifier(4).withName("Help and Feedback").withIcon(context.getResources().getDrawable(R.drawable.help_and_feedback)),
+                            PrimaryDrawerItem().withIdentifier(5).withName("DevelopersActivity").withIcon(context.getResources().getDrawable(R.drawable.developers))
+
+
+                    )
+                    .withOnDrawerItemClickListener { view, position, drawerItem ->
+                        if (drawerItem != null) {
+                            val intent = when {
+                                drawerItem.identifier == 1L -> Intent(context, HomeActivity::class.java)
+                                drawerItem.identifier == 2L -> Intent(context, ExploreActivity::class.java)
+                                drawerItem.identifier == 3L -> Intent(context, PurchasedCoursesActivity::class.java)
+                                drawerItem.identifier == 4L -> Intent(context, HelpAndFeedbackActivity::class.java)
+                                drawerItem.identifier == 5L -> Intent(context, DevelopersActivity::class.java)
+                                else -> null
+                            }
+                            if (intent != null) {
+                                context.startActivity(intent)
+                            }
+                        }
+
+                        false
+                    }
+                    // .withSavedInstance(savedInstanceState)
+                    // .withShowDrawerOnFirstLaunch(true)
+                    .build()
+
+
+            return result to headerResult
+        }
+
+        fun saveUserData(context: Context) {
+            val sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE)
+
+            if (!sharedPreferences.contains("name")) {
+                val auth = FirebaseAuth.getInstance()
+                val user = auth.currentUser
+
+                val database = FirebaseDatabase.getInstance()
+                val reference = database.reference.child("users").child(user?.uid)
+
+                reference.addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError?) {
+
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot?) {
+                        val userInfo = p0?.getValue(UserInformation::class.java)
+
+                        val editor = sharedPreferences.edit()
+                        editor.putString("name", userInfo?.name)
+                        editor.putString("city", userInfo?.city)
+                        editor.putString("phone", userInfo?.phoneNum)
+                        editor.apply()
+                    }
+                })
+            }
+        }
+
+        fun formatNumber(_number: Int): String {
+            val number = _number.toString()
+
+            val numberFormat = NumberFormat.getCurrencyInstance(Locale("hi", "in"))
+            val symbol = numberFormat.format(0.00).replace("0.00", "")
+            return numberFormat.format(number.toDouble()).replace(symbol, symbol + " ")
         }
     }
 }

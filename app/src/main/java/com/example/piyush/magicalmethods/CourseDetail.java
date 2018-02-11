@@ -13,9 +13,10 @@ import android.widget.TextView;
  */
 
 import com.beust.klaxon.JsonObject;
+import com.example.piyush.magicalmethods.activity.PaymentWebviewActivity;
 import com.example.piyush.magicalmethods.databinding.ActivityCourseDetailBinding;
-import com.example.piyush.magicalmethods.mmget.MMfromServer;
-import com.example.piyush.magicalmethods.mmget.MMfromServerListener;
+import com.example.piyush.magicalmethods.lib.MMfromServer;
+import com.example.piyush.magicalmethods.listeners.MMfromServerListener;
 
 import org.jetbrains.annotations.NotNull;
 

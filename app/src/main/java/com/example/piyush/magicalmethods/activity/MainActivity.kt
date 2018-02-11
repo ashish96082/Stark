@@ -1,15 +1,16 @@
-package com.example.piyush.magicalmethods
+package com.example.piyush.magicalmethods.activity
 
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
+import com.example.piyush.magicalmethods.R
 import com.example.piyush.magicalmethods.lib.CreateSession
 import com.example.piyush.magicalmethods.lib.ManageSession
 import com.example.piyush.magicalmethods.lib.Util
-import com.example.piyush.magicalmethods.mmget.MMfromServer
-import com.example.piyush.magicalmethods.mmget.MMfromServerListener
+import com.example.piyush.magicalmethods.listeners.MMfromServerListener
+import com.example.piyush.magicalmethods.lib.MMfromServer
 
 class MainActivity : Activity() {
 
@@ -49,7 +50,7 @@ class MainActivity : Activity() {
      * i.e., you could change ui (add items in listview. etc.) from the function
      */
     private fun createListener(): MMfromServerListener {
-        return object : MMfromServerListener {
+        return object : MMfromServerListener() {
             override fun onDownloadComplete(json: JsonObject) {
                 // Checks if there wasn't any error like invalid session id, or other server related issut
                 // It will be executed only when data is successfully recieved

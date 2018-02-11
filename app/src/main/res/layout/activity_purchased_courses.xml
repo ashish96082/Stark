@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.piyush.magicalmethods.activity.ExploreActivity">
+    tools:context="com.example.piyush.magicalmethods.activity.PurchasedCoursesActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -46,3 +46,4 @@
 
 
 </RelativeLayout>
+

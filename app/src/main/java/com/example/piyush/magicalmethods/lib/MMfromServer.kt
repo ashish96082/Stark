@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods.mmget
+package com.example.piyush.magicalmethods.lib
 
 
 import android.content.Context
@@ -6,8 +6,7 @@ import android.os.AsyncTask
 import android.util.Log
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
-import com.example.piyush.magicalmethods.lib.ManageSession
-import com.example.piyush.magicalmethods.lib.Util
+import com.example.piyush.magicalmethods.listeners.MMfromServerListener
 import com.github.kittinunf.fuel.httpPost
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,6 +20,9 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
 
     private var request = 0
     private var courseKey = ""
+
+    private var page = 0
+    private var perPage = 0
 
     private val baseUrl = "http://mm.s-ct.asia/"
 
@@ -43,19 +45,31 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
         courseKey = _course_key
     }
 
+    fun setPage(page: Int, perPage: Int) {
+        this.page = page
+        this.perPage = perPage
+    }
+
 
     override fun doInBackground(vararg p0: Void?): String {
 //        mcryptKey = generateKey()
         val session = ManageSession(context).getSession()
         mcryptKey = session.first
         val sessionId = session.second
-        println(sessionId)
+//        println(sessionId)
 
 
         val args = mutableListOf("session_id" to sessionId, "version" to Util.getVersion(context))
 
         when (request) {
-            REQUEST_COURSE_LIST -> args.add("request" to "COURSE_LIST")
+            REQUEST_COURSE_LIST -> {
+                args.add("request" to "COURSE_LIST")
+
+                if (page != 0 && perPage != 0) {
+                    args.add("page" to page)
+                    args.add("per_page" to perPage)
+                }
+            }
             REQUEST_COURSE_INFO -> {
                 args.add("request" to "COURSE_INFO")
                 if (courseKey != "")
@@ -93,7 +107,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
         return when (error) {
             null -> {
                 //            Log.d("mmtest", response.toString())
-                println(String(response.data))
+//                println(String(response.data))
                 String(response.data)
             }
             else -> {
@@ -112,7 +126,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
             // Json Parsing
             val parser = Parser()
 
-            println(resp)
+//            println(resp)
             return parser.parse(StringBuilder(resp)) as JsonObject
         } catch (e: IllegalStateException) {
             Log.d("MMDownload", "Malformed json", e)
@@ -136,6 +150,12 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
         val user = auth.currentUser
 
         return user?.uid ?: "default"
+    }
+
+    override fun onPreExecute() {
+        super.onPreExecute()
+
+        listener.onPreDownload()
     }
 
     override fun onPostExecute(result: String?) {

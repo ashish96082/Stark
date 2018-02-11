@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods;
+package com.example.piyush.magicalmethods.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +9,13 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.piyush.magicalmethods.R;
 import com.example.piyush.magicalmethods.lib.CreateSession;
 import com.example.piyush.magicalmethods.lib.ManageSession;
 import com.example.piyush.magicalmethods.listeners.OnCreateSessionComplete;
 
-public class SplashScreen extends AppCompatActivity {
-    private static final String TAG = "SplashScreen";
+public class SplashScreenActivity extends AppCompatActivity {
+    private static final String TAG = "SplashScreenActivity";
     /**
      * Created by SWE
      */
@@ -69,9 +70,9 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void openLoginActivity() {
-        Intent mainIntent = new Intent(SplashScreen.this, LoginActivity.class);
-        SplashScreen.this.startActivity(mainIntent);
-        SplashScreen.this.finish();
+        Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+        SplashScreenActivity.this.startActivity(mainIntent);
+        SplashScreenActivity.this.finish();
     }
 }
 

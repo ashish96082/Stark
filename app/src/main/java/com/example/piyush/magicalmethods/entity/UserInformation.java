@@ -1,4 +1,4 @@
-package com.example.piyush.magicalmethods;
+package com.example.piyush.magicalmethods.entity;
 
 /**
  * Created by SWE
@@ -9,7 +9,7 @@ public class UserInformation {
     private String city;
     private String phoneNum;
 
-    public UserInformation(){
+    public UserInformation() {
 
     }
 
@@ -41,5 +41,10 @@ public class UserInformation {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    @Override
+    public String toString() {
+        return "city: " + this.city + ", name: " + name + ", phone: " + phoneNum;
     }
 }
