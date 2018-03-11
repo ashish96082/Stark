@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/individual_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
-    android:padding="12dp"
-    android:background="#36eeeeee">
+    android:layout_weight="1"
+    android:background="#36eeeeee"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp">
 
     <ImageView
         android:id="@+id/course_details_video_play_icon"
-        android:layout_width="30dp"
+        android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/lock" />
+        android:layout_gravity="start|center_vertical"
+        android:src="@drawable/lock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/course_details_video_next_icon"
+        app:layout_constraintStart_toEndOf="@id/course_details_video_play_icon"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/course_details_video_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title of Video"
+            android:gravity="center_vertical"
+            android:lines="3"
+            android:maxLines="4"
+            android:singleLine="false"
+            android:text="Title of  This will be cut sort. Description of video. This will be cut sort. Description of"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/course_details_video_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Description of video. This will be cut sort. Description of video. This will be cut sort. Description of video. This will be cut sort. Description of video. This will be cut sort."
-            android:textSize="12sp"
-            android:maxLines="1"
             android:maxLength="36"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:maxLines="1"
+            android:text="Description of video. This will be cut sort. Description of video. This will be cut sort. Description of video. This will be cut sort. Description of video. This will be cut sort."
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <!--<Space-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1" />-->
 
     <ImageView
-        android:layout_width="30dp"
+        android:id="@+id/course_details_video_next_icon"
+        android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_gravity="center|end"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/next" />
+        android:layout_gravity="end|center_vertical"
+        android:src="@drawable/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
