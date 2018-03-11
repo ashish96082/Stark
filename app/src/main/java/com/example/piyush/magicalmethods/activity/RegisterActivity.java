@@ -1,12 +1,14 @@
 package com.example.piyush.magicalmethods.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -96,7 +98,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void run() {
                                             sendEmailVerification();
                                             progressDialog.cancel();
-                                            startActivity(new Intent(RegisterActivity.this, AddToDatabaseActivity.class));
+
+                                            new AlertDialog.Builder(RegisterActivity.this)
+                                                    .setMessage("Registered Successfully. Please check your mail to activate account.")
+                                            .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    startActivity(new Intent(RegisterActivity.this, AddToDatabaseActivity.class));
+                                                }
+                                            })
+                                            .setCancelable(false)
+                                            .show();
                                         }
                                     }, 2000);
 
