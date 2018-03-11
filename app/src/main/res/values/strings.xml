@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MagicalMethods</string>
+    <string name="app_name">Magical Methods</string>
     <string name="Welcome">"Welcome to Magical Methods!"</string>
     <string name="Hello">Login</string>
     <string name="Forget_Password">Forgot Password ?</string>

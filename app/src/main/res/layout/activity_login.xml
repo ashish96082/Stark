@@ -24,7 +24,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:src="@drawable/logocopy1" />
+                android:src="@drawable/logo_transparent" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_email1"
