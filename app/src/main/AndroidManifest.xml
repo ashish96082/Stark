@@ -87,7 +87,11 @@
         <activity
             android:name=".activity.PurchasedCoursesActivity"
             android:label="@string/title_activity_purchased_courses"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.TicketActivity"
+            android:label="@string/title_activity_ticket"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

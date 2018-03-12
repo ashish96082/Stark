@@ -9,6 +9,7 @@ import com.beust.klaxon.Parser
 import com.example.piyush.magicalmethods.listeners.MMfromServerListener
 import com.github.kittinunf.fuel.httpPost
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
 
 /**
  * Created by ashish kumar on 04-11-2017 | 04:05 PM.
@@ -20,6 +21,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
 
     private var request = 0
     private var courseKey = ""
+    private var ticketArgs:HashMap<String, String> = hashMapOf()
 
     private var page = 0
     private var perPage = 0
@@ -32,6 +34,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
         val REQUEST_COURSE_INFO = 3
         val REQUEST_USER_COURSE_LIST = 21
         val REQUEST_USER_COURSE_PURCHASED = 22
+        val CREATE_TICKET = 100
     }
 
     /**
@@ -48,6 +51,10 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
     fun setPage(page: Int, perPage: Int) {
         this.page = page
         this.perPage = perPage
+    }
+
+    fun ticketArgs(args: HashMap<String, String>) {
+        this.ticketArgs = args
     }
 
 
@@ -96,11 +103,17 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
                 else
                     throw Exception("Not a valid course key")
             }
+            CREATE_TICKET -> {
+                args.add("request" to "CREATE_TICKET")
+                args.add("ticket" to Gson().toJson(ticketArgs))
+            }
             else -> {
                 throw Exception("Not a valid request type")
             }
         }
 
+        println(args)
+        println(getUrl())
         val (_, response, result) = getUrl().httpPost(args).responseString()
         val (_, error) = result
 
@@ -120,6 +133,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
     private fun decodeResponse(result: String?): JsonObject? {
         try {
             // Decode the response from the server using decrypt
+            Log.d("test", result)
             val mcrypt = mcrypt(mcryptKey)
             val resp = String(mcrypt.decrypt(result))
 
@@ -139,8 +153,9 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
 
     private fun getUrl(): String {
         return when {
-            request < REQUEST_USER_COURSE_LIST -> baseUrl + "get.php"
+            request <= REQUEST_COURSE_INFO -> baseUrl + "get.php"
             request <= REQUEST_USER_COURSE_PURCHASED -> baseUrl + "user.php"
+            request <= CREATE_TICKET -> baseUrl + "ticket.php"
             else -> baseUrl
         }
     }

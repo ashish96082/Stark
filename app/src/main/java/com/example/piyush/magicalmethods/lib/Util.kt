@@ -7,7 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import android.provider.Settings
-import com.example.piyush.magicalmethods.*
+import com.example.piyush.magicalmethods.R
 import com.example.piyush.magicalmethods.activity.*
 import com.example.piyush.magicalmethods.entity.UserInformation
 import com.google.firebase.auth.FirebaseAuth
@@ -146,7 +146,8 @@ class Util {
                             PrimaryDrawerItem().withIdentifier(3).withName("My Courses").withIcon(context.resources.getDrawable(R.drawable.your_courses)),
 
                             PrimaryDrawerItem().withIdentifier(4).withName("Help and Feedback").withIcon(context.getResources().getDrawable(R.drawable.help_and_feedback)),
-                            PrimaryDrawerItem().withIdentifier(5).withName("DevelopersActivity").withIcon(context.getResources().getDrawable(R.drawable.developers))
+                            PrimaryDrawerItem().withIdentifier(5).withName("Create Ticket").withIcon(context.getResources().getDrawable(R.drawable.icon__contact_mail)),
+                            PrimaryDrawerItem().withIdentifier(6).withName("About Us").withIcon(context.getResources().getDrawable(R.drawable.icon__information))
 
 
                     )
@@ -157,7 +158,8 @@ class Util {
                                 drawerItem.identifier == 2L -> Intent(context, ExploreActivity::class.java)
                                 drawerItem.identifier == 3L -> Intent(context, PurchasedCoursesActivity::class.java)
                                 drawerItem.identifier == 4L -> Intent(context, HelpAndFeedbackActivity::class.java)
-                                drawerItem.identifier == 5L -> Intent(context, DevelopersActivity::class.java)
+                                drawerItem.identifier == 5L -> Intent(context, TicketActivity::class.java)
+                                drawerItem.identifier == 6L -> Intent(context, DevelopersActivity::class.java)
                                 else -> null
                             }
                             if (intent != null) {
