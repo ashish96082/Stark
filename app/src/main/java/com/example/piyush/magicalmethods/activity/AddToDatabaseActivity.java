@@ -29,7 +29,7 @@ public class AddToDatabaseActivity extends AppCompatActivity {
 
     private static final String TAG = "AddToDatabaseActivity";
     private Button btnSubmit;
-    private EditText mName,mcity,mPhoneNum;
+    private EditText mName, mcity, mPhoneNum;
     private String userID;
 
     //add Firebase Database stuff
@@ -105,15 +105,15 @@ public class AddToDatabaseActivity extends AppCompatActivity {
                 );
 
                 //handle the exception if the EditText fields are null
-                if(!name.equals("") && !city.equals("") && !phoneNum.equals("")){
-                    UserInformation userInformation = new UserInformation(city,name,phoneNum);
+                if (!name.equals("") && !city.equals("") && !phoneNum.equals("")) {
+                    UserInformation userInformation = new UserInformation(city, name, phoneNum);
                     myRef.child("users").child(userID).setValue(userInformation);
                     toastMessage("Your Information has been saved.");
                     mName.setText("");
                     mcity.setText("");
                     mPhoneNum.setText("");
-                    startActivity(new Intent(AddToDatabaseActivity.this,LoginActivity.class));
-                }else{
+                    startActivity(new Intent(AddToDatabaseActivity.this, LoginActivity.class));
+                } else {
                     toastMessage("Fill out all the fields");
                 }
             }
@@ -137,14 +137,15 @@ public class AddToDatabaseActivity extends AppCompatActivity {
 
     /**
      * customizable toast
+     *
      * @param message
      */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBackPressed() {
-        
+
     }
 }

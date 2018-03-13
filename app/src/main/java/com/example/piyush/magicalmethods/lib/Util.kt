@@ -113,18 +113,17 @@ class Util {
         fun initDrawer(context: Context): Pair<Drawer, AccountHeader> {
             val auth = FirebaseAuth.getInstance()
             val user = auth.currentUser
-            val email = user?.email ?: "ironman@jarvis.com"
+            val email = user?.email ?: "contact@example.com"
 
             val sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE)
-            val displayName = sharedPreferences.getString("name", "Tony Stark")
+            val displayName = sharedPreferences.getString("name", "")
 
             // Create the AccountHeader
             val headerResult = AccountHeaderBuilder()
                     .withActivity(context as Activity)
                     .withHeaderBackground(R.drawable.header)
                     .addProfiles(
-                            ProfileDrawerItem().withName(displayName).withEmail(email).withIcon(context.getResources().getDrawable(R.drawable.tony_stark))
-
+                            ProfileDrawerItem().withName(displayName).withEmail(email).withIcon(context.getResources().getDrawable(R.drawable.icon__default_profile))
                     )
                     .withOnAccountHeaderListener { view, profile, currentProfile -> false }
                     .build()
@@ -173,7 +172,6 @@ class Util {
                     // .withSavedInstance(savedInstanceState)
                     // .withShowDrawerOnFirstLaunch(true)
                     .build()
-
 
             return result to headerResult
         }
