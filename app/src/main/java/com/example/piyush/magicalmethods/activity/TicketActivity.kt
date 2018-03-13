@@ -27,7 +27,7 @@ class TicketActivity : AppCompatActivity() {
 
         val temp = Util.initDrawer(this)
         result = temp.component1()
-        result.setSelection(5L, false)
+        result.setSelection(4L, false)
         headerResult = temp.component2()
 
         val sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE)
