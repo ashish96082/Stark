@@ -1,6 +1,7 @@
 package com.example.piyush.magicalmethods.lib
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -145,9 +146,9 @@ class Util {
 //                            ),
                             PrimaryDrawerItem().withIdentifier(3).withName("My Courses").withIcon(context.resources.getDrawable(R.drawable.your_courses)),
 
-                            PrimaryDrawerItem().withIdentifier(4).withName("Help and Feedback").withIcon(context.getResources().getDrawable(R.drawable.help_and_feedback)),
-                            PrimaryDrawerItem().withIdentifier(5).withName("Create Ticket").withIcon(context.getResources().getDrawable(R.drawable.icon__contact_mail)),
-                            PrimaryDrawerItem().withIdentifier(6).withName("About Us").withIcon(context.getResources().getDrawable(R.drawable.icon__information))
+//                            PrimaryDrawerItem().withIdentifier(4).withName("Help and Feedback").withIcon(context.getResources().getDrawable(R.drawable.help_and_feedback)),
+                            PrimaryDrawerItem().withIdentifier(4).withName("Enquiry with Us").withIcon(context.getResources().getDrawable(R.drawable.icon__contact_mail)),
+                            PrimaryDrawerItem().withIdentifier(5).withName("Developers").withIcon(context.getResources().getDrawable(R.drawable.developers))
 
 
                     )
@@ -157,9 +158,9 @@ class Util {
                                 drawerItem.identifier == 1L -> Intent(context, HomeActivity::class.java)
                                 drawerItem.identifier == 2L -> Intent(context, ExploreActivity::class.java)
                                 drawerItem.identifier == 3L -> Intent(context, PurchasedCoursesActivity::class.java)
-                                drawerItem.identifier == 4L -> Intent(context, HelpAndFeedbackActivity::class.java)
-                                drawerItem.identifier == 5L -> Intent(context, TicketActivity::class.java)
-                                drawerItem.identifier == 6L -> Intent(context, DevelopersActivity::class.java)
+//                                drawerItem.identifier == 4L -> Intent(context, HelpAndFeedbackActivity::class.java)
+                                drawerItem.identifier == 4L -> Intent(context, TicketActivity::class.java)
+                                drawerItem.identifier == 5L -> Intent(context, AddToDatabaseActivity::class.java)
                                 else -> null
                             }
                             if (intent != null) {
@@ -194,6 +195,17 @@ class Util {
 
                     override fun onDataChange(p0: DataSnapshot?) {
                         val userInfo = p0?.getValue(UserInformation::class.java)
+
+                        if (userInfo?.name == null || userInfo?.name == "") {
+                            AlertDialog.Builder(context)
+                                    .setMessage("It seems you have not completed profile. Please do so to continue.")
+                                    .setPositiveButton("Visit Profile") { dialogInterface, i ->
+                                        context.startActivity(Intent(context, AddToDatabaseActivity::class.java))
+                                    }
+                                    .setCancelable(false)
+                                    .show()
+                            return
+                        }
 
                         val editor = sharedPreferences.edit()
                         editor.putString("name", userInfo?.name)
