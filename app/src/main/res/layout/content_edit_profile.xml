@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--xmlns:android="http://schemas.android.com/apk/res/android"></LinearLayout>-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.piyush.magicalmethods.activity.EditProfileActivity"
+    tools:showIn="@layout/activity_edit_profile">
+
+    <data>
+
+        <variable
+            name="commonProfile"
+            type="com.example.piyush.magicalmethods.entity.profile.CommonProfile" />
+
+        <variable
+            name="studentProfile"
+            type="com.example.piyush.magicalmethods.entity.profile.StudentProfile" />
+
+        <variable
+            name="parentsProfile"
+            type="com.example.piyush.magicalmethods.entity.profile.ParentsProfile" />
+
+        <variable
+            name="teacherProfile"
+            type="com.example.piyush.magicalmethods.entity.profile.TeacherProfile" />
+
+        <variable
+            name="handler"
+            type="com.example.piyush.magicalmethods.handlers.EditProfileHandler" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="25dp"
+                android:paddingStart="25dp"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Account Type"
+                    android:textColor="#666"
+                    android:textSize="12sp" />
+
+                <RadioGroup
+                    android:id="@+id/edit_profile__profession_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onCheckedChanged="@{handler.onProfessionChanged}">
+
+                    <RadioButton
+                        android:id="@+id/edit_profile__profession_student"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Student" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile__profession_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Parent" />
+
+                    <RadioButton
+                        android:id="@+id/edit_profile__profession_teacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Teacher" />
+
+                </RadioGroup>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+                        android:inputType="textCapSentences"
+                        android:lines="1"
+                        android:text="@={commonProfile.name}"
+                        android:textColorHint="#666" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:hint="Address"
+                        android:inputType="textMultiLine"
+                        android:lines="2"
+                        android:text="@={commonProfile.address}"
+                        android:textColorHint="#666" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edit_profile__gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Gender"
+                        android:text="@={commonProfile.gender}"
+                        android:textColorHint="#666" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone (optional)"
+                        android:inputType="phone"
+                        android:text="@={commonProfile.phone}"
+                        android:textColorHint="#666" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/student_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/edit_profile__date_of_birth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="Date of Birth"
+                            android:inputType="phone"
+                            android:text="@={studentProfile.dob}" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/edit_profile__class"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Class"
+                            android:text="@={studentProfile.standard}"
+                            android:textColorHint="#666" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Father's Name"
+                            android:inputType="textPersonName"
+                            android:lines="1"
+                            android:text="@={studentProfile.fatherName}"
+                            android:textColorHint="#666" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/parents_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/edit_profile__children_class"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="Children's Class"
+                            android:text="@={parentsProfile.childrensClass}"
+                            android:textColorHint="#666" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/teacher_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/edit_profile__save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v) -> handler.onSubmit(v, commonProfile, studentProfile, parentsProfile, teacherProfile)}"
+                    android:text="Save" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>
+

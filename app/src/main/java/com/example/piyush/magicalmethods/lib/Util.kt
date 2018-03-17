@@ -8,15 +8,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import android.provider.Settings
-import com.example.piyush.magicalmethods.AboutUsActivity
 import com.example.piyush.magicalmethods.R
 import com.example.piyush.magicalmethods.activity.*
-import com.example.piyush.magicalmethods.entity.UserInformation
+import com.example.piyush.magicalmethods.entity.profile.CommonProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.gson.Gson
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -116,18 +116,34 @@ class Util {
             val user = auth.currentUser
             val email = user?.email ?: "contact@example.com"
 
-            val sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE)
-            val displayName = sharedPreferences.getString("name", "")
+            var profile = CommonProfile()
+            val sharedPreferences = context.getSharedPreferences(Constants.SHAREDPREFERENCE_NAME, MODE_PRIVATE)
+            val profileString = sharedPreferences.getString(Constants.SHAREDPREFERENCE_COMMON_PROFILE, "")
+            if (profileString != "")
+                profile = Gson().fromJson<CommonProfile>(profileString, CommonProfile::class.java)
+
+            val profileDrawerItem = ProfileDrawerItem().withName(profile.name).withEmail(email).withIcon(context.getResources().getDrawable(R.drawable.icon__default_profile))
+
+
+            when (profile.gender) {
+                CommonProfile.Gender.MALE.name -> profileDrawerItem.withIcon(context.resources.getDrawable(R.drawable.icon__default_profile_male))
+                CommonProfile.Gender.FEMALE.name -> profileDrawerItem.withIcon(context.resources.getDrawable(R.drawable.icon__default_profile_female))
+                else -> profileDrawerItem.withIcon(context.resources.getDrawable(R.drawable.icon__default_profile))
+            }
 
             // Create the AccountHeader
-            val headerResult = AccountHeaderBuilder()
+            val accountHeaderBuilder = AccountHeaderBuilder()
                     .withActivity(context as Activity)
                     .withHeaderBackground(R.drawable.header)
                     .addProfiles(
-                            ProfileDrawerItem().withName(displayName).withEmail(email).withIcon(context.getResources().getDrawable(R.drawable.icon__default_profile))
+                            profileDrawerItem
                     )
-                    .withOnAccountHeaderListener { view, profile, currentProfile -> false }
-                    .build()
+                    .withSelectionListEnabledForSingleProfile(false)
+                    .withOnAccountHeaderSelectionViewClickListener { view, profile ->
+                        context.startActivity(Intent(context, EditProfileActivity::class.java))
+                        false
+                    }
+            val headerResult = accountHeaderBuilder.build()
 
 
             val result = DrawerBuilder()
@@ -178,14 +194,14 @@ class Util {
         }
 
         fun saveUserData(context: Context) {
-            val sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences(Constants.SHAREDPREFERENCE_NAME, MODE_PRIVATE)
 
-            if (!sharedPreferences.contains("name")) {
+            if (!sharedPreferences.contains(Constants.SHAREDPREFERENCE_COMMON_PROFILE)) {
                 val auth = FirebaseAuth.getInstance()
                 val user = auth.currentUser
 
                 val database = FirebaseDatabase.getInstance()
-                val reference = database.reference.child("users").child(user?.uid)
+                val reference = database.reference.child(Constants.FIREBASE_PROFILE).child(user?.uid).child(Constants.FIREBASE_COMMON_PROFILE)
 
                 reference.addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError?) {
@@ -193,13 +209,13 @@ class Util {
                     }
 
                     override fun onDataChange(p0: DataSnapshot?) {
-                        val userInfo = p0?.getValue(UserInformation::class.java)
+                        val profile = p0?.getValue(CommonProfile::class.java)
 
-                        if (userInfo?.name == null || userInfo?.name == "") {
+                        if (profile == null || profile.name == "") {
                             AlertDialog.Builder(context)
                                     .setMessage("It seems you have not completed profile. Please do so to continue.")
                                     .setPositiveButton("Visit Profile") { dialogInterface, i ->
-                                        context.startActivity(Intent(context, AddToDatabaseActivity::class.java))
+                                        context.startActivity(Intent(context, EditProfileActivity::class.java))
                                     }
                                     .setCancelable(false)
                                     .show()
@@ -207,9 +223,7 @@ class Util {
                         }
 
                         val editor = sharedPreferences.edit()
-                        editor.putString("name", userInfo?.name)
-                        editor.putString("city", userInfo?.city)
-                        editor.putString("phone", userInfo?.phoneNum)
+                        editor.putString(Constants.SHAREDPREFERENCE_COMMON_PROFILE, Gson().toJson(profile))
                         editor.apply()
                     }
                 })

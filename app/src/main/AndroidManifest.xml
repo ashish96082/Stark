@@ -93,9 +93,17 @@
             android:label="@string/title_activity_ticket"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AboutUsActivity"
+            android:name=".activity.AboutUsActivity"
             android:label="@string/title_activity_about_us"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
