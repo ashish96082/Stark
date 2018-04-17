@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.piyush.magicalmethods.activity.EditProfileActivity">
+    tools:context="com.magicalmethods.activity.EditProfileActivity">
 
     <data>
 
         <variable
             name="commonProfile"
-            type="com.example.piyush.magicalmethods.entity.profile.CommonProfile" />
+            type="com.magicalmethods.entity.profile.CommonProfile" />
 
         <variable
             name="studentProfile"
-            type="com.example.piyush.magicalmethods.entity.profile.StudentProfile" />
+            type="com.magicalmethods.entity.profile.StudentProfile" />
 
         <variable
             name="parentsProfile"
-            type="com.example.piyush.magicalmethods.entity.profile.ParentsProfile" />
+            type="com.magicalmethods.entity.profile.ParentsProfile" />
 
         <variable
             name="teacherProfile"
-            type="com.example.piyush.magicalmethods.entity.profile.TeacherProfile" />
+            type="com.magicalmethods.entity.profile.TeacherProfile" />
 
         <variable
             name="handler"
-            type="com.example.piyush.magicalmethods.handlers.EditProfileHandler" />
+            type="com.magicalmethods.handlers.EditProfileHandler" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

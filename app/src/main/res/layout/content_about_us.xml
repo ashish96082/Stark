@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.piyush.magicalmethods.activity.AboutUsActivity"
+    tools:context="com.magicalmethods.activity.AboutUsActivity"
     tools:showIn="@layout/activity_about_us">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -78,17 +78,18 @@
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
                 android:text="Phone: +919971635323"
                 android:textColor="#383838"
                 android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/landline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
                 android:text="Landline: 0124-4036302"
                 android:textColor="#383838"
                 android:textSize="18sp" />
@@ -97,15 +98,30 @@
                 android:id="@+id/contact_us"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
                 android:text="Contact Us"
                 android:textColor="@color/colorPrimary"
                 android:textSize="22sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="DEVELOPERS"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="24sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:id="@+id/recylerview_developers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.constraint.ConstraintLayout>
