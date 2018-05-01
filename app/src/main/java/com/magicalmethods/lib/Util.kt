@@ -8,15 +8,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import android.provider.Settings
-import com.magicalmethods.R
-import com.magicalmethods.activity.*
-import com.magicalmethods.entity.profile.CommonProfile
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
+import com.magicalmethods.R
+import com.magicalmethods.activity.*
+import com.magicalmethods.entity.profile.CommonProfile
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -235,7 +235,7 @@ class Util {
 
             val numberFormat = NumberFormat.getCurrencyInstance(Locale("hi", "in"))
             val symbol = numberFormat.format(0.00).replace("0.00", "")
-            return numberFormat.format(number.toDouble()).replace(symbol, symbol + " ")
+            return numberFormat.format(number.toDouble()).replace(symbol, "$symbol ")
         }
     }
 }

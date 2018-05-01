@@ -6,10 +6,10 @@ import android.os.AsyncTask
 import android.util.Log
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
-import com.magicalmethods.listeners.MMfromServerListener
 import com.github.kittinunf.fuel.httpPost
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
+import com.magicalmethods.listeners.MMfromServerListener
 
 /**
  * Created by ashish kumar on 04-11-2017 | 04:05 PM.
@@ -26,7 +26,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
     private var page = 0
     private var perPage = 0
 
-    private val baseUrl = "http://mm.s-ct.asia/"
+    private val baseUrl = "http://appb.magicalmethods.com/"
 
     companion object {
         const val REQUEST_VIDEO_LIST = 1
@@ -124,7 +124,7 @@ class MMfromServer(_context: Context, _listener: MMfromServerListener) : AsyncTa
         return when (error) {
             null -> {
                 //            Log.d("mmtest", response.toString())
-//                println(String(response.data))
+                println(String(response.data))
                 String(response.data)
             }
             else -> {

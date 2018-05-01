@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.magicalmethods.R
 import com.google.firebase.auth.FirebaseAuth
+import com.magicalmethods.R
 import kotlinx.android.synthetic.main.activity_payment_webview.*
 import java.net.URLEncoder
 
@@ -45,7 +45,7 @@ class PaymentWebviewActivity : Activity() {
         paymentWebviewSettings.javaScriptEnabled = true
         paymentWebviewSettings.displayZoomControls = false
 
-        val url = "http://mm.s-ct.asia/payment_request.php"
+        val url = "http://appb.magicalmethods.com/payment_request.php"
         val postData = "courseKey=" + URLEncoder.encode(courseKey) + "&email=" + URLEncoder.encode(user?.email) + "&userid=" + URLEncoder.encode(user?.uid)
 
         paymentWebview.postUrl(url, postData.toByteArray())

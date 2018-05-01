@@ -5,8 +5,8 @@ import android.os.AsyncTask
 import android.util.Log
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
-import com.magicalmethods.listeners.OnCreateSessionComplete
 import com.github.kittinunf.fuel.httpPost
+import com.magicalmethods.listeners.OnCreateSessionComplete
 
 /**
 * Created by ashish kumar
@@ -33,7 +33,7 @@ class CreateSession(_context: Context, private val onCreateSessionComplete: OnCr
                 "mod_a" to modA
         )
 
-        val (_, response, result) = "http://mm.s-ct.asia/create.php".httpPost(args).responseString()
+        val (_, response, result) = "http://appb.magicalmethods.com/create.php".httpPost(args).responseString()
         val (_, error) = result
 
         return when (error) {
