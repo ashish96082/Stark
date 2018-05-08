@@ -1,5 +1,6 @@
 package com.magicalmethods.adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -40,7 +41,10 @@ class DevelopersAdapter(private val context: Context, private val developers: Ar
             }
 
         holder?.developerEmail?.setOnClickListener {
-            context.startActivity(Intent(Intent.ACTION_SEND).setData(Uri.parse("mailto:" + developers[position].email)))
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(developers[position].email))
+            intent.type = "message/rfc822"
+            (context as Activity).startActivityForResult(Intent.createChooser(intent, "Mail " + developers[position].name), 1)
         }
     }
 

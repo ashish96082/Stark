@@ -147,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
                         public void setImageForPosition(int position, ImageView imageView) {
 //                            Log.d("Home", "inside image listener");
                             Glide
-                                    .with(HomeActivity.this)
+                                    .with(getApplicationContext())
                                     .load(courseDetails.get(position).getImage())
                                     .apply(new RequestOptions()
                                             .placeholder(R.drawable.poster)

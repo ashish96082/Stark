@@ -120,7 +120,7 @@ class CourseDetailsActivity : AppCompatActivity() {
                         Util.formatNumber((courseDetails?.get("price") as String).toInt())
             course_details_description.text = courseDetails?.get("description") as String
             Glide
-                    .with(this)
+                    .with(applicationContext)
                     .load(courseDetails?.get("image") as String)
                     .apply(RequestOptions()
 //                            .placeholder(R.color.colorPrimaryLight)

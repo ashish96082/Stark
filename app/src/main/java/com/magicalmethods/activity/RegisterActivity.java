@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                                    startActivity(new Intent(RegisterActivity.this, AddToDatabaseActivity.class));
+                                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                                 }
                                             })
                                             .setCancelable(false)
